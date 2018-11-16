@@ -8,4 +8,16 @@ public class AIMove implements CommandMove{
 		
 	}
 
+	@Override
+	public int move() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void isWin() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

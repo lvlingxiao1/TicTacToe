@@ -18,7 +18,7 @@ public class TicUnit {
 	
 	public String toString() {
 		if (state==0) {
-			return " ";
+			return "_";
 		} else if (state==1) {
 			return "X";
 		} else {

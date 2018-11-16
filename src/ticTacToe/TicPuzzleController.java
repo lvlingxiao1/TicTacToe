@@ -10,8 +10,8 @@ public class TicPuzzleController {
 	public void newGame() {
 		TicPuzzle ticPuzzle = new TicPuzzle();
 		System.out.println(ticPuzzle);
-		CommandMove player1 = new PlayerMove();
-		CommandMove player2 = new PlayerMove();
+		CommandMove player1 = new PlayerMove(ticPuzzle, 1);
+		CommandMove player2 = new PlayerMove(ticPuzzle, 2);
 		boolean notFinneshed = true;
 		while (notFinneshed) {
 			if (player1.move() == 1){
