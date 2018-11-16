@@ -15,4 +15,14 @@ public class TicUnit {
 	public void setState(int state) {
 		this.state = state;
 	}
+	
+	public String toString() {
+		if (state==0) {
+			return " ";
+		} else if (state==1) {
+			return "X";
+		} else {
+			return "O";
+		}
+	}
 }
