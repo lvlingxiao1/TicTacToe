@@ -36,6 +36,18 @@ public class TicPuzzle {
 		return icUnits;
 	}
 	
+	public ArrayList<Integer> getPossibleMoves() {
+		ArrayList<Integer> a=new ArrayList<Integer>();
+		for (int i=0;i<3;i++) {
+			for (int j=0;j<3;j++) {
+				if (icUnits[i][j].getState()==0) {
+					a.add(i*3+j);
+				}
+			}
+		}
+		return a;
+	}
+	
 	public String toString() {
 		String stringForm = "";
 		for (int i = 0; i < 3; i ++) {
