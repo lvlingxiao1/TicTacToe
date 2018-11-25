@@ -15,6 +15,7 @@ public abstract class CommandMove {
 		int result = board.getResult();
 		if (result > 0 && result < 3) {
 			System.out.println("Player " + pNum + " wins!\n\n");
+			
 		} else {
 			if (result == 3) {
 				System.out.println("Draw!\n\n");

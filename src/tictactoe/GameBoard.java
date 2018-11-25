@@ -28,11 +28,13 @@ public class GameBoard {
 			return board[1][1].state;
 		} else {
 			for (int i = 0; i < 3; i++) {
-				if ((board[i][0].state == board[i][1].state && board[i][1].state == board[i][2].state && board[i][0].state != 0)) {
+				if ((board[i][0].state == board[i][1].state && board[i][1].state == board[i][2].state
+						&& board[i][0].state != 0)) {
 					finished = true;
 					return board[i][0].state;
 				}
-				if ((board[0][i].state == board[1][i].state && board[1][i].state == board[2][i].state && board[0][i].state != 0)) {
+				if ((board[0][i].state == board[1][i].state && board[1][i].state == board[2][i].state
+						&& board[0][i].state != 0)) {
 					finished = true;
 					return board[0][i].state;
 				}
@@ -86,27 +88,27 @@ public class GameBoard {
 		// System.out.println(this);
 		return a;
 	}
-	
+
 	public boolean isAvailable(int x, int y) {
 		return (board[x][y].state == 0);
 	}
 
 	public String toString() {
-		String stringForm = "";
+		String s = "";
 		for (int j = 0; j < 3; j++) {
 			for (int i = 0; i < 3; i++) {
-				stringForm += " ";
-				stringForm += board[i][j] + " ";
+				s += " ";
+				s += board[i][j] + " ";
 				if (i < 2) {
-					stringForm += "|";
+					s += "|";
 				}
 			}
 			if (j < 2) {
-				stringForm += "\n---+---+---";
+				s += "\n---+---+---";
 			}
-			stringForm += "\n";
+			s += "\n";
 		}
-		return stringForm;
+		return s + "\n";
 	}
 
 	public boolean isFinished() {

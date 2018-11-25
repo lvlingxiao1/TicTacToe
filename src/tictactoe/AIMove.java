@@ -51,7 +51,7 @@ public class AIMove extends CommandMove {
 
 	@Override
 	public int move() {
-
+		System.out.println("AI's Turn!");
 		int choice = decide();
 		if (choice != -1) {
 			curr = curr.child[choice];
@@ -59,7 +59,7 @@ public class AIMove extends CommandMove {
 			System.out.println(board);
 		}
 		doIWin();
-		return 0;
+		return choice;
 	}
 
 	public void updatePlayerMove(int p) {

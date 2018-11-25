@@ -1,40 +1,33 @@
 package tictactoe;
 
-import java.util.Scanner;
+import javafx.scene.input.MouseEvent;
 
 public class PlayerMove extends CommandMove {
 
-	private Scanner in;
+	int position;
 	
 	public PlayerMove(GameBoard board, int pNum) {
 		super(board,pNum);
-		in=new Scanner(System.in);
+		position = -1;
 	}
 
 	@Override
 	public int move() {
-		boolean inputInvalid=true;
-		int x = -1, y = -1;
-		while (inputInvalid) {
-			try {
-				System.out.print("x: ");
-				x = Integer.parseInt(in.nextLine());
-				System.out.print("y: ");
-				y = Integer.parseInt(in.nextLine());
-				if (x<1 || x>3 || y<1 || y>3 || !board.isAvailable(x-1,y-1)) {
-					System.out.println("Invalid input.");
-				} else {
-					inputInvalid = false;
-				}
-			} catch (Exception e) {
-				System.out.println("Invalid input.");
-			}
-		}
-		
-		int position = (x-1) +(y-1)*3;
 		board.setMove(position, pNum);
-		System.out.print(board);
+		System.out.print("Player's Turn!\n"+board);
 		doIWin();
 		return position;
 	}
+	
+	void parseInput(MouseEvent e) {
+		int x=(int) (e.getX()/267);
+		int y=(int) (e.getY()/267);
+		if (x<0 || x>2 || y<0 || y>2 || !board.isAvailable(x,y)) {
+			System.out.println("Invalid input.");
+		} else {
+			position = y*3+x;
+			move();
+		}
+	}
+
 }
