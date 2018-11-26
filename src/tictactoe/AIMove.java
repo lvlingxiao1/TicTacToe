@@ -1,15 +1,20 @@
 package tictactoe;
 
-public class AIMove extends CommandMove {
+public class AIMove {
 
 	private GameTreeNode curr;
+	private GameBoard board;
+	private GameModel model;
+	int pNum, position;
 
-	public AIMove(GameBoard board, int pNum, GameTreeNode curr) {
-		super(board, pNum);
+	public AIMove(GameBoard board, GameModel model, int pNum, GameTreeNode curr) {
+		this.board = board;
+		this.pNum = pNum;
+		this.model = model;
 		this.curr = curr;
 	}
 
-	public int decide() {
+	private int decide() {
 		int bestChoice = -1;
 		double bestWinRate = 0, bestDrawRate = 0;
 		System.out.println("Win Rates:");
@@ -49,20 +54,17 @@ public class AIMove extends CommandMove {
 		return -1;
 	}
 
-	@Override
-	public int move() {
+	void move() {
 		System.out.println("AI's Turn!");
-		int choice = decide();
-		if (choice != -1) {
-			curr = curr.child[choice];
-			board.setMove(choice, pNum);
+		position = decide();
+		if (position != -1) {
+			curr = curr.child[position];
+			board.setMove(position, pNum);
 			System.out.println(board);
 		}
-		doIWin();
-		return choice;
 	}
 
-	public void updatePlayerMove(int p) {
+	void updatePlayerMove(int p) {
 		if (curr.child[p] == null) {
 			System.out.println("This game does not exist! What happened!");
 		} else {
@@ -75,7 +77,7 @@ public class AIMove extends CommandMove {
 	 * 
 	 * @param type 0 = win, 1 = draw
 	 */
-	public int randomizedChoice(int type, double rate) {
+	private int randomizedChoice(int type, double rate) {
 		int x;
 		if (type == 0) {
 			x = (int) (Math.random() * 9);

@@ -25,7 +25,7 @@ public class GameTreeNode implements Serializable{
 		this.player=player;
 	}
 	
-	public void updateScore(int result) {
+	void updateScore(int result) {
 		GameTreeNode curr=this;
 		this.result=result;
 		if (result==player) {
@@ -71,7 +71,7 @@ public class GameTreeNode implements Serializable{
 		}	
 	}
 	
-	public int getBestChoice() {
+	int getBestChoice() {
 		int bestChoice=-1;
 		double bestWinRate = 0, bestDrawRate = 0;
 		for (int i=0;i<9;i++) {
@@ -105,7 +105,7 @@ public class GameTreeNode implements Serializable{
 		return -1;
 	}
 
-	public void addChild(GameTreeNode newNode, int position) {
+	void addChild(GameTreeNode newNode, int position) {
 		child[position]=newNode;
 		numChildren+=1;		
 	}

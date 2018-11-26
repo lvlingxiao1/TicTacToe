@@ -20,7 +20,7 @@ public class Training {
 
 	}
 
-	public void gameRec(GameTreeNode curr) {
+	private void gameRec(GameTreeNode curr) {
 		/**
 		 * 0=not finished 1=p1 wins 2=p2 wins 3=draw
 		 */

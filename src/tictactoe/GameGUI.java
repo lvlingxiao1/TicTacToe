@@ -1,6 +1,5 @@
 package tictactoe;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -12,14 +11,14 @@ import javafx.stage.Stage;
 
 public class GameGUI {
 
-	GameModel model;
-	Canvas canvas;
-	GraphicsContext g;
-	Image finishImg, yuyukoImg, yukariImg;
+	private GameModel model;
+	private Canvas canvas;
+	private GraphicsContext g;
+	private Image finishImg, yuyukoImg, yukariImg;
 
 	public GameGUI(Stage stage, GameModel model) {
 		this.model = model;
-		model.gui = this;
+		model.setGUI(this);
 		finishImg = new Image(getClass().getResourceAsStream("img/finish.png"));
 		yuyukoImg = new Image(getClass().getResourceAsStream("img/yuyuko.png"));
 		yukariImg = new Image(getClass().getResourceAsStream("img/yukari.png"));
@@ -39,19 +38,20 @@ public class GameGUI {
 		stage.setTitle("tic tac toe");
 		stage.getIcons().add(yuyukoImg);
 
-		AnimationTimer timer = new AnimationTimer() {
+		// I don't need to refresh the screen...
+		/*AnimationTimer timer = new AnimationTimer() {
 			public void handle(long now) {
 				model.updateGame();
 			}
 		};
-		timer.start();
+		timer.start();*/
 
 		model.newGame();
 		stage.show();
 
 	}
 
-	public void restartPaint() {
+	void restartPaint() {
 
 		// Clear the canvas
 		g.clearRect(0, 0, 800, 800);
@@ -65,17 +65,17 @@ public class GameGUI {
 		g.strokeLine(16, 532, 784, 532);
 	}
 
-	public void finishPaint() {
+	void finishPaint() {
 		g.drawImage(finishImg, 50, 320);
 	}
 
-	public void drawYuyuko(int position) {
+	void drawYuyuko(int position) {
 		int x = position % 3 * 264 + 8;
 		int y = position / 3 * 264 + 8;
 		g.drawImage(yuyukoImg, x, y, 256, 256);
 	}
 
-	public void drawYukari(int position) {
+	void drawYukari(int position) {
 		int x = position % 3 * 264 + 8;
 		int y = position / 3 * 264 + 8;
 		g.drawImage(yukariImg, x, y, 256, 256);
